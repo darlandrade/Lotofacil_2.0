@@ -26,11 +26,12 @@ def buscar_ultimo_concurso():
     conn.close()
     return lotofacil[3].text.split()[1]
 
+
 def salvar_concursos():
     url = 'http://loterias.caixa.gov.br/wps/portal/loterias/landing/lotofacil'
 
     options = Options()
-    # options.add_argument("--headless")
+    options.add_argument("--headless")
     driver = webdriver.Chrome('C:\\Users\\darla\\anaconda3\\chromedriver.exe', options=options)
     wait = WebDriverWait(driver, 10)
     driver.get(url)
@@ -75,7 +76,7 @@ def salvar_concursos():
             wait.until(EC.presence_of_element_located((By.NAME, "concurso"))).clear()
             # Espera 5 segundos até a próxima busca
             sleep(3)
-            print("*"*80)
+            print("*" * 80)
 
     with open("LotoFacilResultados.json", 'r') as arquivo:
         # Lê o arquivo
@@ -95,4 +96,3 @@ def salvar_concursos():
 
 if __name__ == '__main__':
     salvar_concursos()
-
